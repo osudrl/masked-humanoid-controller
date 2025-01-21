@@ -22,7 +22,7 @@ Code accompanying the paper: "Generating Physically Realistic and Directable Hum
 pip install -r requirements.txt
 ```
 
-**Method B**: Detailed Installation
+**Method B**: Conda Installation
 ```bash
 # Create and activate environment
 conda create -n mhc python=3.8
