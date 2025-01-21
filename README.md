@@ -14,48 +14,39 @@ Code accompanying the paper: "Generating Physically Realistic and Directable Hum
 
 ## Installation
 
-- Download from the [NVIDIA Isaac Gym website](https://developer.nvidia.com/isaac-gym)
-- Follow one of these installation methods:
-
-**Method A**: Simple Installation
+### Set up the conda environment
 ```bash
-pip install -r requirements.txt
-```
-
-**Method B**: Conda Installation
-```bash
-# Create and activate environment
 conda create -n mhc python=3.8
 conda activate mhc
 
-# Install PyTorch and dependencies
-pip3 install torch==1.10.0+cu113 torchvision==0.11.1+cu113 \
-        tensorboard==2.8.0 torchaudio==0.10.0+cu113 \
-        -f https://download.pytorch.org/whl/cu113/torch_stable.html
+pip install -r requirements.txt
+```
 
-# Install Isaac Gym
+### Install Isaac Gym
+
+Download from the [NVIDIA Isaac Gym website](https://developer.nvidia.com/isaac-gym)
+
+Navigate to the installation directory and run:
+
+```bash
 cd isaacgym/python && pip install -e .
-
-# Install MHC
-cd mhc
-pip install -e .
 ```
 
 ## Motion Data
 
 ### Location and Format
-- Motion clips are stored in `ase/data/motions/` as `.npy` files
+- Motion clips are stored in `mhc/data/motions/` as `.npy` files
 - Datasets are defined in `.yaml` files containing lists of motion clips
 
 ### Visualization
 To visualize motion clips, use:
 ```bash
-python ase/run.py --test \
+python mhc/mhc_play.py --test \
     --task HumanoidViewMotion \
     --num_envs 2 \
-    --cfg_env ase/data/cfg/humanoid_sword_shield.yaml \
-    --cfg_train ase/data/cfg/train/rlg/amp_humanoid.yaml \
-    --motion_file ase/data/motions/reallusion_sword_shield/RL_Avatar_Atk_2xCombo01_Motion.npy
+    --cfg_env mhc/data/cfg/humanoid_mhc_sword_shield_catchup.yaml \
+    --cfg_train mhc/data/cfg/train/rlg/mhc_humanoid_catchup.yaml \
+    --motion_file mhc/data/motions/reallusion_sword_shield/dataset_reallusion_sword_shield.yaml
 ```
 Note: Use `--motion_file` with either a `.npy` file (single motion) or `.yaml` file (dataset)
 
