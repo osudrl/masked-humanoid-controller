@@ -1,0 +1,5 @@
+motions:
+- file: dummy.npy
+  num_frames: 1200
+  weight: 1.0
+

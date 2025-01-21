@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<robot name="object">
+  <link name="object">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 1.5708"/>
+      <geometry>
+        <box size="6.0  0.2 2.0"/>
+      </geometry>
+      <material name="mat">
+        <color rgba="0.8 0.8 0.8 1"/>
+      </material>
+    </visual>
+	
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 1.5708"/>
+      <geometry>
+        <box size="6.0 0.2 2.0"/>
+      </geometry>
+    </collision>
+  </link>
+</robot>

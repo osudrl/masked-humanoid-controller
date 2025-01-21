@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<robot name="object">
+  <link name="object">
+    <visual>
+      <origin xyz="0 0 0"/>
+      <geometry>
+        <box size="0.2 4.0 2.0"/>  <!-- Changed to 0.2m wide (x), 4m thick (y), 2m tall (z) -->
+      </geometry>
+      <material name="mat">
+        <color rgba="0.8 0.8 0.8 1"/>
+      </material>
+    </visual>
+	
+    <collision>
+      <origin xyz="0 0 0"/>
+      <geometry>
+        <box size="0.2 4.0 2.0"/>  <!-- Matching collision geometry with visual -->
+      </geometry>
+    </collision>
+  </link>
+</robot>
