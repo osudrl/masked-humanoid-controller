@@ -7,6 +7,11 @@
   - [SMPL Model](#smpl-model)
   - [Reallusion Model](#reallusion-model)
 
+
+Code accompanying the paper: "Generating Physically Realistic and Directable Human Motions from Multi-Modal Inputs"
+
+
+
 ## Installation
 
 - Download from the [NVIDIA Isaac Gym website](https://developer.nvidia.com/isaac-gym)
@@ -138,3 +143,22 @@ python mhc/mhc_play.py \
     --env_spacing 1.5 \
     [... same parameters as training ...]
 ```
+
+## Citation
+If you find this codebase useful for your research, please cite our paper:
+
+```
+@article{shrestha2024generating,
+  title={Generating Physically Realistic and Directable Human Motions from Multi-Modal Inputs},
+  author={Shrestha, Aayam and Liu, Pan and Ros, German and Yuan, Kai and Fern, Alan},
+  journal={ECCV},
+  year={2024}
+}
+```
+
+## References
+- [ASE](https://github.com/nv-tlabs/ASE) [The codebase is largely adapted from ASE]
+- [Isaac Gym](https://developer.nvidia.com/isaac-gym)
+- [Reallusion](https://actorcore.reallusion.com/)
+- [AMASS](https://amass.is.tue.mpg.de/)
+- [SMPL](https://smpl.is.tue.mpg.de/)
