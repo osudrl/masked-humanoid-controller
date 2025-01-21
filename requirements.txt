@@ -4,7 +4,8 @@ rl_games==1.1.4
 torchvision==0.11.1+cu113
 tensorboard==2.8.0
 torchaudio==0.10.0+cu113
-munch
-tdqm
-pyfbx
-inputs
+munch==4.0.0
+tdqm==0.0.1
+pyfbx==0.0.8
+inputs==0.5
+wandb==0.19.4
