@@ -57,6 +57,23 @@ Motion data provided by Reallusion (for non-commercial use only):
 
 For custom motion retargeting, refer to: `ase/poselib/retarget_motion.py`
 
+## AMASS Motion Data
+The MHC can also be trained on the AMASS dataset.
+
+Download the dataset from the [AMASS website](https://amass.is.tue.mpg.de/index.html), in our case we use the SFU dataset.
+
+Once downloaded, the dataset should be left in **~/Downloads**. 
+
+From **mhc/poselib**, you can then run:
+```bash
+python process_amass_HumanML3D.py
+```
+
+The processed motions should now exist under **mhc/data/motions/amass/SFU**. 
+
+You can use the SMPL Model commands listed below to train and evaluate models on this data.
+
+
 ## Training and Evaluation
 
 ### SMPL Model
