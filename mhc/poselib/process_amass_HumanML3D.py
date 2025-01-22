@@ -7,8 +7,7 @@ import pandas as pd
 from poselib.skeleton.skeleton3d import SkeletonTree, SkeletonState, SkeletonMotion
 # from poselib.visualization.common import plot_skeleton_state, plot_skeleton_motion_interactive
 
-from utils.torch_utils import exp_map_to_quat
-# from torch_utils import exp_map_to_quat     # need to copy utils.torch_utils to poselib/torch_utils
+from utils.torch_utils import exp_map_to_quat # need to copy utils.torch_utils to poselib/torch_utils
 from poselib.core.rotation3d import quat_inverse, quat_mul_norm, quat_rotate, quat_yaw_rotation
 
 import yaml
@@ -79,7 +78,6 @@ def convert_amass(motion_source_path, motion_output_path, truncate_frame_start, 
     # converted_amass_file = os.path.join(output_dir, amass_motion_name+".npy")
     # if os.path.isfile(converted_amass_file):    # check if file already exist
     #     return converted_amass_file
-    
     smpl_data = np.load(motion_source_path)
     fps = smpl_data['mocap_framerate']
     n_steps = smpl_data['poses'].shape[0]
@@ -119,7 +117,7 @@ def convert_amass(motion_source_path, motion_output_path, truncate_frame_start, 
     poses[:, 0] = quat_mul_norm(quat_inverse(init_pose), poses[:, 0])
     trans = quat_rotate(quat_inverse(init_pose), trans)
 
-    t = SkeletonTree.from_mjcf('mhc/data/assets/smpl_humanoid.xml')
+    t = SkeletonTree.from_mjcf('mhc/data/assets/mjcf/smpl_humanoid.xml')
     # new_pose = SkeletonState.from_rotation_and_root_translation(
     #     skeleton_tree=t,
     #     r=poses[200],
@@ -202,12 +200,12 @@ if __name__ == '__main__':
     4. run this script `python ase/poselib/process_amass_HumanML3D.py`
     '''
     home_folder = os.path.expanduser("~")
-    amass_data_dir = home_folder + "/Downloads/amass"
-    amass_output_dir = home_folder + "/Downloads/amass_processed_HumanML3D"
-    amass_occlusion = joblib.load("ase/data/amass/amass_copycat_occlusion_v3.pkl")
-    text_data_dir = "ase/data/HumanML3D/texts"
+    amass_data_dir = home_folder + "/Downloads/"
+    amass_output_dir = 'mhc/data/motions/amass/'
+    amass_occlusion = joblib.load("mhc/data/motions/amass/amass_copycat_occlusion_v3.pkl")
+    text_data_dir = "mhc/data/motions/amass/texts"
 
-    index_path = './ase/data/HumanML3D/index.csv'
+    index_path = 'mhc/data/motions/amass/index.csv'
     index_file = pd.read_csv(index_path)
 
     all_motions = []
@@ -222,15 +220,15 @@ if __name__ == '__main__':
 
         curr_dataset_motions = []
         for index, row in motion_list.iterrows():
-            motion_source_path = row['source_path'].replace('./pose_data', amass_data_dir).replace('.npy', '.npz')
+            motion_source_path = home_folder + row['source_path'].replace('./pose_data', amass_data_dir).replace('.npy', '.npz')
             motion_start_frame = row['start_frame']
             motion_end_frame = row['end_frame']
             motion_output_path = os.path.join(output_dir, row['new_name'])
             motion_text_path = os.path.join(text_data_dir, row['new_name'].replace('.npy', '.txt'))
 
-            with open(motion_text_path, 'r', encoding='utf-8') as text_file:
-                motion_texts = text_file.readlines()
-            motion_texts = [x.split('#')[0] for x in motion_texts]
+            #with open(motion_text_path, 'r', encoding='utf-8') as text_file:
+            #    motion_texts = text_file.readlines()
+            #motion_texts = [x.split('#')[0] for x in motion_texts]
 
             if ('0-'+dataset+"_"+motion_source_path.split('/')[-2]+'_'+motion_source_path.split('/')[-1][:-4] in amass_occlusion):
                 continue
@@ -238,8 +236,8 @@ if __name__ == '__main__':
             if not os.path.isfile(motion_output_path) and (motion_end_frame-motion_start_frame>5):    # check if file already exist
                 convert_amass(motion_source_path, motion_output_path, truncate_frame_start, motion_start_frame, motion_end_frame)
 
-            all_motions.append({"file": motion_output_path.replace(amass_output_dir+"/", ""), "weight": 1.0, "text": motion_texts})
-            curr_dataset_motions.append({"file": motion_output_path.replace(os.path.join(amass_output_dir,dataset)+"/", ""), "weight": 1.0, "text": motion_texts})
+            all_motions.append({"file": motion_output_path.replace(amass_output_dir, ""), "weight": 1.0})
+            curr_dataset_motions.append({"file": motion_output_path.replace(os.path.join(amass_output_dir,dataset)+"/", ""), "weight": 1.0})
 
         with open(os.path.join(amass_output_dir, dataset, "dataset_"+dataset+".yaml"), 'w') as f:
             print(dataset, " number of motions: ", len(curr_dataset_motions))
@@ -247,6 +245,6 @@ if __name__ == '__main__':
     
     print("\n-------------------")
     print("number of motions: ", len(all_motions))
-    print("writing dataset_amass.yaml to ", os.path.join(amass_output_dir, "dataset_amass.yaml"))
-    with open(os.path.join(amass_output_dir, "dataset_amass.yaml"), 'w') as f:
+    print("writing dataset_amass.yaml to ", os.path.join(amass_output_dir, "amp_humanoid_amass_dataset.yaml"))
+    with open(os.path.join(amass_output_dir, "amp_humanoid_amass_dataset.yaml"), 'w') as f:
         yaml.dump({"motions": all_motions}, f)

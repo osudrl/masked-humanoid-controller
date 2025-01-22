@@ -16,7 +16,7 @@ python mhc/mhc_train.py \
 --motion_lib_device cpu \
 --cfg_env mhc/data/cfg/humanoid_mhc_smpl_catchup.yaml \
 --cfg_train mhc/data/cfg/train/rlg/mhc_humanoid_catchup.yaml \
---motion_file mhc/data/motions/amass/amp_humanoid_amass_dataset_sfu.yaml \
+--motion_file mhc/data/motions/amass/amp_humanoid_amass_dataset.yaml \
 --wandb_project mhc_smpl_train \
 --wandb_path WANDB_USERNAME/mhc_smpl_train/wandbRunID/latest_model.pth \
 --disable_early_termination \
@@ -44,7 +44,7 @@ python mhc/mhc_play.py \
 --motion_lib_device cpu \
 --cfg_env mhc/data/cfg/humanoid_mhc_smpl_catchup.yaml \
 --cfg_train mhc/data/cfg/train/rlg/mhc_humanoid_catchup.yaml \
---motion_file mhc/data/motions/amass/amp_humanoid_amass_dataset_sfu.yaml \
+--motion_file mhc/data/motions/amass/amp_humanoid_amass_dataset.yaml \
 --wandb_project mhc_smpl_train \
 --wandb_path WANDB_USERNAME/mhc_smpl_train/wandbRunID/latest_model.pth \
 --disable_early_termination \

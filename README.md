@@ -58,21 +58,29 @@ Motion data provided by Reallusion (for non-commercial use only):
 For custom motion retargeting, refer to: `ase/poselib/retarget_motion.py`
 
 ## AMASS Motion Data
+
 The MHC can also be trained on the AMASS dataset.
 
 Download the dataset from the [AMASS website](https://amass.is.tue.mpg.de/index.html), in our case we use the SFU dataset.
 
-Once downloaded, the dataset should be left in **~/Downloads**. 
+Once downloaded, the dataset should be left in `~/Downloads`. 
 
-From **mhc/poselib**, you can then run:
+From `mhc/poselib`, you can then run:
 ```bash
 python process_amass_HumanML3D.py
 ```
 
-The processed motions should now exist under **mhc/data/motions/amass/SFU**. 
+The processed motions should now exist under `mhc/data/motions/amass/SFU`.
 
 You can use the SMPL Model commands listed below to train and evaluate models on this data.
 
+### Other AMASS Motions
+
+By default, only the SFU dataset will be processed by `process_amass_HumanML3D.py` although you can modify the amass_dataset array to add more.
+
+The default commands given below use the `amp_humanoid_amass_dataset.yaml` file produced under `mhc/data/motions/amass`, this file will include all datasets processed by process_amass_HumanML3D.py. 
+
+If you process more then one dataset, each dataset will also be given its own individual .yaml file. This can then be set as your motion_file argument in order to evaluate datasets individually.
 
 ## Training and Evaluation
 
@@ -93,7 +101,7 @@ python mhc/mhc_train.py \
     --motion_lib_device cpu \
     --cfg_env mhc/data/cfg/humanoid_mhc_smpl_catchup.yaml \
     --cfg_train mhc/data/cfg/train/rlg/mhc_humanoid_catchup.yaml \
-    --motion_file mhc/data/motions/amass/amp_humanoid_amass_dataset_sfu.yaml \
+    --motion_file mhc/data/motions/amass/amp_humanoid_amass_dataset.yaml \
     --wandb_project mhc_smpl_train \
     --wandb_path WANDB_USERNAME/mhc_smpl_train/wandbRunID/latest_model.pth \
     --disable_early_termination \
