@@ -9,3 +9,5 @@ tdqm==0.0.1
 pyfbx==0.0.8
 inputs==0.5
 wandb==0.19.4
+pandas==2.0.3
+joblib==1.4.2

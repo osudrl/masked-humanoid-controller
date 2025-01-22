@@ -7,7 +7,7 @@ import pandas as pd
 from poselib.skeleton.skeleton3d import SkeletonTree, SkeletonState, SkeletonMotion
 # from poselib.visualization.common import plot_skeleton_state, plot_skeleton_motion_interactive
 
-from utils.torch_utils import exp_map_to_quat # need to copy utils.torch_utils to poselib/torch_utils
+from poselib.torch_utils import exp_map_to_quat
 from poselib.core.rotation3d import quat_inverse, quat_mul_norm, quat_rotate, quat_yaw_rotation
 
 import yaml
