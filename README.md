@@ -50,13 +50,6 @@ python mhc/mhc_play.py --test \
 ```
 Note: Use `--motion_file` with either a `.npy` file (single motion) or `.yaml` file (dataset)
 
-### Motion Data Credits
-Motion data provided by Reallusion (for non-commercial use only):
-- [Studio Mocap Sword and Shield Stunts](https://actorcore.reallusion.com/motion/pack/studio-mocap-sword-and-shield-stunts)
-- [Studio Mocap Sword and Shield Moves](https://actorcore.reallusion.com/motion/pack/studio-mocap-sword-and-shield-moves)
-
-For custom motion retargeting, refer to: `ase/poselib/retarget_motion.py`
-
 ## AMASS Motion Data
 
 The MHC can also be trained on the AMASS dataset.
@@ -173,7 +166,7 @@ If you find this codebase useful for your research, please cite our paper:
 ```
 
 ## References
-- [ASE](https://github.com/nv-tlabs/ASE) [The codebase is largely adapted from ASE]
+- [ASE](https://github.com/nv-tlabs/ASE) [This MHC codebase is largely adapted from ASE]
 - [Isaac Gym](https://developer.nvidia.com/isaac-gym)
 - [Reallusion](https://actorcore.reallusion.com/)
 - [AMASS](https://amass.is.tue.mpg.de/)
