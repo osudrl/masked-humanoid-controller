@@ -199,6 +199,10 @@ if __name__ == '__main__':
     3. update the 'amass_data_dir' and 'amass_output_dir' below
     4. run this script `python ase/poselib/process_amass_HumanML3D.py`
     '''
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    project_root = os.path.abspath(os.path.join(script_dir, "../.."))
+    os.chdir(project_root)
+
     home_folder = os.path.expanduser("~")
     amass_data_dir = home_folder + "/Downloads/"
     amass_output_dir = 'mhc/data/motions/amass/'
